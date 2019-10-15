@@ -24,7 +24,7 @@
 
 
 #include "BEM.h"
-#include <QtGui>
+#include <QtWidgets>
 #include "../Misc/FloatEdit.h"
 
 class CreateBEMDlg : public QDialog

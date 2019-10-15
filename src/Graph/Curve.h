@@ -26,6 +26,7 @@
 #include "../Params.h"
 #include "../Objects/CVector.h"
 #include <QColor>
+#include <QObject>
 
 class CCurve : public QObject
 {

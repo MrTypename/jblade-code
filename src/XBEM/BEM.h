@@ -22,7 +22,7 @@
 #ifndef BEM_H
 #define BEM_H
 
-#include <QtGui>
+#include <QtWidgets>
 #include "../GLWidget.h"
 #include "../MainFrame.h"
 #include "../Misc/ColorButton.h"

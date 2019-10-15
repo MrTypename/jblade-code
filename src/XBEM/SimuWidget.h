@@ -23,7 +23,7 @@
 #define SIMUWIDGET_H
 
 
-#include <QtGui>
+#include <QtWidgets>
 #include <QWidget>
 #include "BEM.h"
 #include "../Misc/LineCbBox.h"

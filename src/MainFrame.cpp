@@ -51,7 +51,7 @@
 #include "XDirect/LEDlg.h"
 #include "XInverse/XInverse.h"
 #include <QDesktopWidget>
-#include <QtGui>
+#include <QtWidgets>
 
 ////////////////////////////////////////new code DM//////////////////////
 #include "XBEM/BEM.h"
@@ -64,7 +64,7 @@
 #include "XBEM/AboutJBLADE.h"
 ////////////////////////////////////////end new code JM//////////////////////
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 	#include <CoreFoundation/CoreFoundation.h>
 #endif
 
@@ -72,14 +72,14 @@ extern CFoil* g_pCurFoil;
 
 QPointer<MainFrame> MainFrame::_self = 0L;
 
-MainFrame::MainFrame(QWidget *parent, Qt::WFlags flags)
+MainFrame::MainFrame(QWidget *parent, Qt::WindowFlags flags)
 	: QMainWindow(parent, flags)
 {
         m_VersionName = QString::fromLatin1("JBLADE v5.17 on XFLR5 v6.06 and QBlade v 0.51");
 	QString jpegPluginPath;
 
 	//Jpeg format requires a specific plugin to be loaded dynmically at run time
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         // F.Meschia 20101101 -- this is unnecessary, in fact, so I commented it out
 
         QDir dir(qApp->applicationDirPath());
@@ -87,11 +87,11 @@ MainFrame::MainFrame(QWidget *parent, Qt::WFlags flags)
         jpegPluginPath = dir.canonicalPath() + "/PlugIns/imageformats/libqjpeg.dylib";
 
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	QDir dir(qApp->applicationDirPath());
 	jpegPluginPath = dir.canonicalPath() + "/imageformats/qjpeg4.dll";
 #endif
-#ifdef Q_WS_X11
+#ifdef Q_OS_X11
 	QDir dir(qApp->applicationDirPath());
 	jpegPluginPath = dir.canonicalPath() + "/imageformats/libqjpeg.so";
 #endif
@@ -163,7 +163,7 @@ MainFrame::MainFrame(QWidget *parent, Qt::WFlags flags)
 
 	if(LoadSettings())
 	{
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         QSettings settings(QSettings::NativeFormat,QSettings::UserScope,"XFLR5");
 #else
         QSettings settings(QSettings::IniFormat,QSettings::UserScope,"XFLR5");
@@ -3913,7 +3913,7 @@ bool MainFrame::LoadSettings()
 	QSize size;
 	
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         QSettings settings(QSettings::NativeFormat,QSettings::UserScope,"XFLR5");
 #else
         QSettings settings(QSettings::IniFormat,QSettings::UserScope,"XFLR5");
@@ -4324,7 +4324,7 @@ void MainFrame::OnExportCurGraph()
 void MainFrame::OnGuidelines()
 {
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 
      CFURLRef appUrlRef = CFBundleCopyBundleURL(CFBundleGetMainBundle());
      CFStringRef macPath = CFURLCopyFileSystemPath(appUrlRef,
@@ -4339,11 +4339,11 @@ void MainFrame::OnGuidelines()
 
 
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	QDir dir(qApp->applicationDirPath());
 	QString FileName = dir.canonicalPath() + "/Guidelines.pdf" ;
 #endif
-#ifdef Q_WS_X11
+#ifdef Q_OS_X11
 	QDir dir("/usr/share/xflr5");
 	QString FileName = dir.canonicalPath() + "/Guidelines.pdf" ;
 #endif
@@ -4416,13 +4416,13 @@ void MainFrame::OnLanguage()
 	TranslatorDlg dlg;
 	QDir TranslationsDir;
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 	TranslationsDir.setPath(qApp->applicationDirPath());
 #endif
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	TranslationsDir.setPath(qApp->applicationDirPath());
 #endif
-#ifdef Q_WS_X11
+#ifdef Q_OS_X11
 	TranslationsDir.setPath("/usr/share/xflr5");
 #endif
 
@@ -4649,7 +4649,7 @@ void MainFrame::OnResetSettings()
 	if(resp == QMessageBox::Yes)
 	{
 		QMessageBox::warning(this,tr("Default Settings"), tr("The settings will be reset at the next session"));
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         QSettings settings(QSettings::NativeFormat,QSettings::UserScope,"XFLR5");
 #else
         QSettings settings(QSettings::IniFormat,QSettings::UserScope,"XFLR5");
@@ -5807,7 +5807,7 @@ void MainFrame::SaveSettings()
         //////////end new code///////////
 
 	if(!m_bSaveSettings) return;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         QSettings settings(QSettings::NativeFormat,QSettings::UserScope,"XFLR5");
 #else
 	QSettings settings(QSettings::IniFormat,QSettings::UserScope,"XFLR5");
@@ -7743,7 +7743,7 @@ void MainFrame::UpdateOpps()
 			QByteArray textline;
 			const char *text;
 			double x;
-			textline = str.toAscii();
+			textline = str.toLatin1();
 			text = textline.constData();
 			int res = sscanf(text, "%lf", &x);
 

@@ -23,7 +23,7 @@
 #include <QGridLayout>
 #include <QLabel>
 #include <QtDebug>
-#include <QtGui>
+#include <QtWidgets>
 #include "BladeStructureDlg.h"
 #include "BEM.h"
 #include "../Miarex/Miarex.h"

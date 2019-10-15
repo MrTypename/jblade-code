@@ -26,6 +26,7 @@
 #include "domUtils.h"
 #include "camera.h"
 #include "qglviewer.h"
+#include <GL/GLU.h>
 
 using namespace std;
 using namespace qglviewer;

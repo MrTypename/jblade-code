@@ -62,7 +62,7 @@ void FoilTableDelegate::drawCheck(QPainter *painter, const QStyleOptionViewItem 
 	const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
 
 	QRect checkRect = QStyle::alignedRect(option.direction, Qt::AlignCenter,
-										  check(option, option.rect, Qt::Checked).size(),
+                                          option.rect.size(),
 										  QRect(option.rect.x() + textMargin, option.rect.y(),
 												option.rect.width() - (textMargin * 2), option.rect.height()));
 	QItemDelegate::drawCheck(painter, option, checkRect, state);
@@ -87,7 +87,7 @@ bool FoilTableDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
 	{
 		const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
 		QRect checkRect = QStyle::alignedRect(option.direction, Qt::AlignCenter,
-											  check(option, option.rect, Qt::Checked).size(),
+                                              option.rect.size(),
 											  QRect(option.rect.x() + textMargin, option.rect.y(),
 													option.rect.width() - (2 * textMargin), option.rect.height()));
 

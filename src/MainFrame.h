@@ -96,7 +96,7 @@ class MainFrame : public QMainWindow
 	Q_OBJECT
 
 public:
-	MainFrame(QWidget *parent = 0, Qt::WFlags flags = 0);
+    MainFrame(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 	int LoadXFLR5File(QString PathName);
         static MainFrame* self();

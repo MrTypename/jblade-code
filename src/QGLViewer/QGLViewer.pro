@@ -13,7 +13,7 @@
 TEMPLATE = lib
 TARGET = QGLViewer
 VERSION = 2.3.0
-CONFIG -= debug debug_and_release
+#CONFIG -= debug debug_and_release
 CONFIG *= release qt opengl warn_on shared thread create_prl rtti
 
 HEADERS = qglviewer.h \
@@ -47,7 +47,7 @@ TRANSLATIONS = qglviewer_fr.ts
                        
 QT_VERSION=$$[QT_VERSION]
 
-contains( QT_VERSION, "^4.*" ) {
+contains( QT_VERSION, "^5.*" ) {
   QT *= xml opengl
   CONFIG(debug, debug|release) {
     unix: TARGET = $$join(TARGET,,,_debug)
@@ -189,6 +189,7 @@ win32 {
 
   MOC_DIR = moc
   OBJECTS_DIR = obj
+  LIBS += -lopengl32 -lglu32
 
   # Make sure to have C++ files, PentiumPro code, few warnings, add
   # support to RTTI and Exceptions, and generate debug info "program database"
@@ -205,10 +206,10 @@ win32 {
 
 
 #		--  I m a g e I n t e r f a c e  --
-contains( QT_VERSION, "^4.*" ) {
-  FORMS *= ImageInterface.Qt4.ui
+contains( QT_VERSION, "^5.*" ) {
+  FORMS *=
 } else {
-  FORMS *= ImageInterface.Qt3.ui
+  FORMS *=
 }
 
 
@@ -219,10 +220,10 @@ contains( QT_VERSION, "^4.*" ) {
 contains( DEFINES, NO_VECTORIAL_RENDER ) {
   message( Vectorial rendering disabled )
 } else {
-  contains( QT_VERSION, "^4.*" ) {
-    FORMS *= VRenderInterface.Qt4.ui
+  contains( QT_VERSION, "^5.*" ) {
+    FORMS *=
   } else {
-    FORMS *= VRenderInterface.Qt3.ui
+    FORMS *=
   }
 
   SOURCES *= \
@@ -257,3 +258,7 @@ contains( DEFINES, NO_VECTORIAL_RENDER ) {
 	VRender/Vector3.h \
 	VRender/VRender.h
 }
+
+FORMS += \
+    ImageInterface.Qt5.ui \
+    VRenderInterface.Qt5.ui

@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 
-#include <QtGui>
+#include <QtWidgets>
 #include "BEM.h"
 #include "BladeAxisDelegate.h"
 

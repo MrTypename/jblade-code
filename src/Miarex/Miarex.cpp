@@ -9714,7 +9714,7 @@ void QMiarex::OnImportWPolar()
 		{
 			if(strong.length())
 			{
-				textline = strong.toAscii();
+				textline = strong.toLatin1();
 				text = textline.constData();
 
 				res = sscanf(text, "%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf%lf", &alpha, &CL, &ICd, &PCd, &TCd, &CY, &GCm, &GRm, &GYm, &IYm, &QInf, &XCP);

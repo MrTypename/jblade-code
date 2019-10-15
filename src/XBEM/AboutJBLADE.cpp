@@ -19,7 +19,7 @@
 
 *****************************************************************************/
 
-#include <QtGui>
+#include <QtWidgets>
 #include "AboutJBLADE.h"
 #include "../XBEM/BEM.h"
 #include <QBitmap>

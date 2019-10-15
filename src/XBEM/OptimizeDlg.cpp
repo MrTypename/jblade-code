@@ -21,7 +21,7 @@
 
 #include "OptimizeDlg.h"
 #include "BEM.h"
-#include <QtGui>
+#include <QtWidgets>
 #include "../Misc/FloatEdit.h"
 #include <QDebug>
 #include "../Objects/Wing.h"

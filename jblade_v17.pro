@@ -1,7 +1,7 @@
 # -------------------------------------------------
 # Project created by QtCreator 2009-02-14T15:30:46
 # -------------------------------------------------
-QT += opengl
+QT += opengl widgets
 TEMPLATE = app
 SOURCES += src/MainFrame.cpp \
     src/Main.cpp \
@@ -302,7 +302,7 @@ OTHER_FILES += doc/ReleaseNotes.txt
 # for the libqglviewer
 #________________________________
 INCLUDEPATH *= $$PWD/src
-LIBS += -L$$PWD/src -lQGLViewer2
+LIBS += -L$$PWD/src/QGLViewer/debug -L$$PWD/src/QGLViewer/release -lQGLViewer2 -lOpengl32
 #LIBS += -L$$PWD/src -lQGLViewerd2
 #________________________________
 

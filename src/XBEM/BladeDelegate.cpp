@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 
-#include <QtGui>
+#include <QtWidgets>
 #include "../Objects/Foil.h"
 #include "../Objects/Polar.h"
 #include "BladeDelegate.h"

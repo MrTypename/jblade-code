@@ -319,7 +319,7 @@ void DisplaySettingsDlg::OnTextFont()
 	QFont TextFont;
 	TextFont.setStyleHint(QFont::TypeWriter, QFont::OpenGLCompatible);
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 	//20090604 Mac OS Native font dialog does not work well under QT 4.5.1
 	//QFont font = QFontDialog::getFont(&ok, m_TextFont, this);
         //20110324 Works again under QT 4.6, though it loses focus is mouse is moved outside of it (QT bug?)

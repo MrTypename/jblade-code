@@ -3463,7 +3463,7 @@ void QXDirect::OnImportXFoilPolar()
 		{
 			if(strong.length())
 			{
-				textline = strong.toAscii();
+				textline = strong.toLatin1();
 				text = textline.constData();
 				res = sscanf(text, "%lf%lf%lf%lf%lf%lf%lf%lf%lf", &alpha, &CL, &CD, &CDp, &CM, &Xt, &Xb, &Cpmn, &HMom);
 
@@ -3589,7 +3589,7 @@ void QXDirect::OnImportJavaFoilPolar()
 				{
 					strong.replace(',', '.');
 
-					textline = strong.toAscii();
+					textline = strong.toLatin1();
 					text = textline.constData();
 
 					res = sscanf(text, "%lf%lf%lf%lf%lf%lf",&alpha, &CL, &CD, &CM, &Xt, &Xb);

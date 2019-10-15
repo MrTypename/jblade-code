@@ -79,15 +79,15 @@ public:
 	// Complete implementation is provided so that the constructor is defined with QT3_SUPPORT when .h is included.
 	// (Would not be available otherwise since lib is compiled without QT3_SUPPORT).
 #if QT_VERSION < 0x040000 || defined QT3_SUPPORT
-	explicit QGLViewer(QWidget* parent=NULL, const char* name=0, const QGLWidget* shareWidget=0, Qt::WFlags flags=0)
+	explicit QGLViewer(QWidget* parent=NULL, const char* name=0, const QGLWidget* shareWidget=0, Qt::WindowFlags flags=0)
 		: QGLWidget(parent, name, shareWidget, flags)
 	{ defaultConstructor(); }
 
-	explicit QGLViewer(const QGLFormat& format, QWidget* parent=0, const char* name=0, const QGLWidget* shareWidget=0,Qt::WFlags flags=0)
+	explicit QGLViewer(const QGLFormat& format, QWidget* parent=0, const char* name=0, const QGLWidget* shareWidget=0,Qt::WindowFlags flags=0)
 		: QGLWidget(format, parent, name, shareWidget, flags)
 	{ defaultConstructor(); }
 
-	QGLViewer(QGLContext* context, QWidget* parent, const char* name=0, const QGLWidget* shareWidget=0, Qt::WFlags flags=0)
+	QGLViewer(QGLContext* context, QWidget* parent, const char* name=0, const QGLWidget* shareWidget=0, Qt::WindowFlags flags=0)
 # if QT_VERSION >= 0x030200
 		: QGLWidget(context, parent, name, shareWidget, flags) {
 # else
@@ -100,9 +100,9 @@ public:
 #endif
 
 #if QT_VERSION >= 0x040000
-	explicit QGLViewer(QWidget* parent=0, const QGLWidget* shareWidget=0, Qt::WFlags flags=0);
-	explicit QGLViewer(QGLContext *context, QWidget* parent=0, const QGLWidget* shareWidget=0, Qt::WFlags flags=0);
-	explicit QGLViewer(const QGLFormat& format, QWidget* parent=0, const QGLWidget* shareWidget=0, Qt::WFlags flags=0);
+        explicit QGLViewer(QWidget* parent=0, const QGLWidget* shareWidget=0, Qt::WindowFlags flags=0);
+	explicit QGLViewer(QGLContext *context, QWidget* parent=0, const QGLWidget* shareWidget=0, Qt::WindowFlags flags=0);
+	explicit QGLViewer(const QGLFormat& format, QWidget* parent=0, const QGLWidget* shareWidget=0, Qt::WindowFlags flags=0);
 #endif
 
 	virtual ~QGLViewer();

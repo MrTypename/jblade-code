@@ -20,7 +20,7 @@
 *****************************************************************************/
 
 #include "SimuWidget.h"
-#include <QtGui>
+#include <QtWidgets>
 #include <QWidget>
 #include "../Misc/LineCbBox.h"
 #include "../Misc/LineButton.h"

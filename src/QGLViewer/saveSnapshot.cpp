@@ -27,7 +27,7 @@
 
 #ifndef NO_VECTORIAL_RENDER
 # if QT_VERSION >= 0x040000
-#  include "ui_VRenderInterface.Qt4.h"
+#  include "ui_VRenderInterface.Qt5.h"
 # else
 #  include <qcheckbox.h>
 #  include <qcombobox.h>
@@ -41,7 +41,7 @@
 #endif
 
 #if QT_VERSION >= 0x040000
-# include "ui_ImageInterface.Qt4.h"
+# include "ui_ImageInterface.Qt5.h"
 #else
 # include <qspinbox.h>
 # include <qcheckbox.h>
@@ -630,7 +630,7 @@ void QGLViewer::saveSnapshot(bool automatic, bool overwrite)
       QString selectedFormat = FDFormatString[snapshotFormat()];
 # if QT_VERSION >= 0x040000
       fileName = QFileDialog::getSaveFileName(this, "Choose a file name to save under", snapshotFileName(), formats, &selectedFormat,
-					      overwrite?QFileDialog::DontConfirmOverwrite:QFlag(0));
+                          overwrite?QFileDialog::DontConfirmOverwrite:QFileDialog::Options());
 # else
       fileName = QFileDialog::getSaveFileName(snapshotFileName(), formats, this,
 					      "Save Snapshot dialog", "Choose a file name to save under", &selectedFormat);
@@ -781,7 +781,7 @@ QImage QGLViewer::grabFrameBuffer(bool withAlpha)
   }
   else
   {
-#if defined (Q_WS_WIN)
+#if defined (Q_OS_WIN)
 	res = QImage(w, h, 8);
 	glReadPixels(0, 0, w, h, GL_COLOR_INDEX, GL_UNSIGNED_BYTE, res.bits());
 	//int palSize = 0;

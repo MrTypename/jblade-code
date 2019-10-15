@@ -19,7 +19,7 @@
 
 *****************************************************************************/
 
-#include <QtGui>
+#include <QtWidgets>
 #include "AboutBEM.h"
 #include "../XBEM/BEM.h"
 #include <QBitmap>

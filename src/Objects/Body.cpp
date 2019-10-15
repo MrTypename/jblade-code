@@ -963,7 +963,7 @@ bool CBody::ImportDefinition()
 			bRead  = ReadAVLString(in, Line, strong);
 			if(!bRead) break;
 
-			textline = strong.toAscii();
+			textline = strong.toLatin1();
 			text = textline.constData();
 			res = sscanf(text, "%lf  %lf  %lf", &xo, &yo, &zo);
 
