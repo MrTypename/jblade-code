@@ -302,7 +302,12 @@ OTHER_FILES += doc/ReleaseNotes.txt
 # for the libqglviewer
 #________________________________
 INCLUDEPATH *= $$PWD/src
-LIBS += -L$$PWD/src/QGLViewer/debug -L$$PWD/src/QGLViewer/release -lQGLViewer2 -lOpengl32
+CONFIG(debug, debug|release) {
+    LIBS += -L$$PWD/src/QGLViewer/debug -ldQGLViewer2 -lOpengl32
+}
+CONFIG(release, debug|release) {
+    LIBS += -L$$PWD/src/QGLViewer/release -lQGLViewer2 -lOpengl32
+}
 #LIBS += -L$$PWD/src -lQGLViewerd2
 #________________________________
 
