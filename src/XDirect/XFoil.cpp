@@ -4045,7 +4045,6 @@ bool XFoil::InitXFoilGeometry(CFoil *pFoil)
 			pFoil->nx[k] = nx[k+1];
 			pFoil->ny[k] = ny[k+1];
 		}
-		pFoil->n = n;
 		return true;
 	}
 	else
