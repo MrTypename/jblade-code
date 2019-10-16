@@ -83,8 +83,9 @@ void CPolar::ExportPolar(QTextStream &out, int FileType, bool bDataOnly)
 
 	if(m_PolarType!=FIXEDAOAPOLAR)
 	{
-		if(FileType==1) Header = ("  alpha     CL        CD       CDp       Cm    Top Xtr Bot Xtr   Cpmin    Chinge    XCp    \n");
-		else            Header = ("alpha,CL,CD,CDp,Cm,Top Xtr,Bot Xtr,Cpmin,Chinge,XCp\n");
+		if(FileType==1)      Header = ("  alpha     CL        CD       CDp       Cm    Top Xtr Bot Xtr   Cpmin    Chinge    XCp    \n");
+		else if(FileType==2) Header = ("% alpha CL CD\n");
+		else                 Header = ("alpha,CL,CD,CDp,Cm,Top Xtr,Bot Xtr,Cpmin,Chinge,XCp\n");
 		out << Header;
 		if(FileType==1)
 		{
@@ -99,6 +100,10 @@ void CPolar::ExportPolar(QTextStream &out, int FileType, bool bDataOnly)
 											.arg(m_Cd[j],8,'f',5)
 											.arg(m_Cdp[j],8,'f',5)
 											.arg(m_Cm[j],7,'f',4);
+			else if(FileType==2) strong = QString("%1 %2 %3\n")
+											.arg(m_Alpha[j],7,'f',3)
+											.arg(m_Cl[j],7,'f',4)
+											.arg(m_Cd[j],8,'f',5);
 			else            strong = QString("%1,%2,%3,%4,%5")
 											.arg(m_Alpha[j],7,'f',3)
 											.arg(m_Cl[j],7,'f',4)
@@ -107,16 +112,19 @@ void CPolar::ExportPolar(QTextStream &out, int FileType, bool bDataOnly)
 											.arg(m_Cm[j],7,'f',4);
 
 			out << strong;
-			if(m_XTr1[j]<990.0)
+			if(FileType!=2)
 			{
-				if(FileType==1) strong=QString("  %1  %2").arg(m_XTr1[j],6,'f',4).arg( m_XTr2[j],6,'f',4);
-				else            strong=QString(",%1,%2").arg(m_XTr1[j],6,'f',4).arg( m_XTr2[j],6,'f',4);
+				if(m_XTr1[j]<990.0)
+				{
+					if(FileType==1) strong=QString("  %1  %2").arg(m_XTr1[j],6,'f',4).arg( m_XTr2[j],6,'f',4);
+					else            strong=QString(",%1,%2").arg(m_XTr1[j],6,'f',4).arg( m_XTr2[j],6,'f',4);
+				out << strong;
+				}
+				if(FileType==1) strong=QString("  %1  %2  %3\n").arg(m_Cpmn[j],7,'f',4).arg(m_HMom[j],7,'f',4).arg(m_XCp[j],7,'f',4);
+				else            strong=QString(",%1,%2,%3\n").arg(m_Cpmn[j],7,'f',4).arg(m_HMom[j],7,'f',4).arg(m_XCp[j],7,'f',4);
 				out << strong;
 			}
-			if(FileType==1) strong=QString("  %1  %2  %3\n").arg(m_Cpmn[j],7,'f',4).arg(m_HMom[j],7,'f',4).arg(m_XCp[j],7,'f',4);
-			else            strong=QString(",%1,%2,%3\n").arg(m_Cpmn[j],7,'f',4).arg(m_HMom[j],7,'f',4).arg(m_XCp[j],7,'f',4);
-			out << strong;
-			}
+		}
 	}
 	else 
 	{
