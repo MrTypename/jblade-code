@@ -58,25 +58,25 @@ void CPolar::ExportPolar(QTextStream &out, int FileType, bool bDataOnly)
 
 	if(!bDataOnly)
 	{
-		strong =pMainFrame->m_VersionName + "\n\n";
+        strong = "% " + pMainFrame->m_VersionName + "\n%\n";
 		out << strong;
-		strong =(" Calculated polar for: ");
-		strong += m_FoilName + "\n\n";
+        strong =("% Calculated polar for: ");
+        strong += m_FoilName + "\n%\n";
 		out << strong;
-		strong = QString(" %1 %2").arg(m_ReType).arg(m_MaType);
-		if(m_ReType==1) strong += (" Reynolds number fixed       ");
-		else if(m_ReType==2) strong += (" Reynolds number ~ 1/sqrt(CL)");
-		else if(m_ReType==3) strong += (" Reynolds number ~ 1/CL      ");
-		if(m_MaType==1) strong += ("   Mach number fixed         ");
-		else if(m_MaType==2) strong += ("   Mach number ~ 1/sqrt(CL)  ");
-		else if(m_MaType==3) strong += ("   Mach number ~ 1/CL        ");
-		strong +="\n\n";
+        strong = QString("% %1 %2").arg(m_ReType).arg(m_MaType);
+        if(m_ReType==1) strong += ("% Reynolds number fixed       ");
+        else if(m_ReType==2) strong += ("% Reynolds number ~ 1/sqrt(CL)");
+        else if(m_ReType==3) strong += ("% Reynolds number ~ 1/CL"      );
+        if(m_MaType==1) strong += ("   Mach number fixed");
+        else if(m_MaType==2) strong += ("   Mach number ~ 1/sqrt(CL)");
+        else if(m_MaType==3) strong += ("   Mach number ~ 1/CL"      );
+        strong +="\n%\n";
 		out << strong;
-		strong=QString((" xtrf =   %1 (top)        %2 (bottom)\n"))
+        strong=QString(("% xtrf =   %1 (top)        %2 (bottom)\n"))
 						.arg(m_XTop,0,'f',3).arg(m_XBot,0,'f',3);
 		out << strong;
 
-		strong = QString(" Mach = %1     Re = %2 e 6     Ncrit = %3\n\n")
+        strong = QString("% Mach = %1     Re = %2e6     Ncrit = %3\n%\n")
 				 .arg(m_Mach,7,'f',3).arg(m_Reynolds/1.e6,9,'f',3).arg(m_ACrit,7,'f',3);
 		out << strong;
 	}
