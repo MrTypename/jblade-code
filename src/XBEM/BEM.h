@@ -261,7 +261,7 @@ private:
         void SnapClient(QString const &FileName);
 
         void OnCalculateBladeMass();
-
+        void OnExport360Polar();
 
 
 private:

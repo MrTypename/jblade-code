@@ -6502,6 +6502,8 @@ void QBEM::OnEditCur360Polar()
         m_pCur360Polar->m_bShowPoints = bPoints;
         CreatePolarCurve();
         UpdateView();
+
+        OnExport360Polar();
 }
 
 
@@ -7480,6 +7482,7 @@ void QBEM::OnSave360Polar()
 
     CheckButtons();
 
+    OnExport360Polar();
 }
 
 void QBEM::OnSaveWing()
@@ -11026,4 +11029,18 @@ void QBEM::WheelEvent(QWheelEvent *event)
             }
 
 
+}
+
+void QBEM::OnExport360Polar()
+{
+    // Store 360[deg] polar within file:
+    QFile f( m_pCur360Polar->m_PlrName + '_' + m_pCur360Polar->m_ParentPlrName + ".dat" );
+
+    f.open( QFile::OpenModeFlag::WriteOnly );
+
+    if( f.isOpen( ) )
+    {
+        QTextStream s( &f );
+        m_pCur360Polar->ExportPolar( s, 2 );
+    }
 }
