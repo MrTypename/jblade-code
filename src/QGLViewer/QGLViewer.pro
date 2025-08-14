@@ -195,9 +195,9 @@ win32 {
   # support to RTTI and Exceptions, and generate debug info "program database"
   # Any feedback on these flags is welcome.
   !win32-g++ {
-    QMAKE_CXXFLAGS = -TP -G6 -GR -Zi
+    QMAKE_CXXFLAGS = -TP -GR -Zi
     win32-msvc {
-      QMAKE_CXXFLAGS *= -GX
+      QMAKE_CXXFLAGS *= -EHsc /FS
     } else {
       QMAKE_CXXFLAGS *= -EHs
     }
